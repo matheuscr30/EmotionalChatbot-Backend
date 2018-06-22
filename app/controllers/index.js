@@ -37,11 +37,11 @@ module.exports.conversation = function (application, req, res) {
     sessionClient
         .detectIntent(request)
         .then(responses => {
-            //console.log(responses);
+            console.log(responses);
+            res.status(200).json({"answerMessage" : responses[0]['queryResult']['fulfillmentText']});
         })
         .catch(err => {
             console.error('ERROR:', err);
+            res.status(200).json({"answerMessage" : "Ocorreu um problema inesperado"});
         });
-
-    res.status(200).json({"response" : "ok"});
 };
